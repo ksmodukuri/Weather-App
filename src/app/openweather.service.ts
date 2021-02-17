@@ -10,7 +10,7 @@ export class OpenweatherService {
 
   returnWeather(location:string){
     return this.http.get(
-        'http://api.weatherstack.com/current?access_key=134193b574ce8b34cf624759187bf792&query=' + location
+        'http://api.weatherstack.com/current?access_key=YOUR_API_KEY&query=' + location
     );
 }
 }
