@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Sky</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light">
+            <span class="mb-0 h1 text-danger m-auto">Blue Sky</span>
+        </nav>
+    
+        <div class="container text-wrap">
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6  m-5">
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Delhi')">
+                        <img src="assets/icons/delhi-139357.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Delhi</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Hyderabad')">
+                        <img src="assets/icons/charminar-1-119696.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Hyderabad</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Chennai')">
+                        <img src="assets/icons/chennai-1-119692.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Chennai</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Jaipur')">
+                        <img src="assets/icons/hawamahal-1-119697.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Jaipur</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Mumbai')">
+                        <img src="assets/icons/gatewayofindia-1-119691.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Mumbai</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card align-items-center" (click)="getWeatherForMajorCities('Kolkata')">
+                        <img src="assets/icons/victoria-1-119694.png" height="64" width="64">
+                        <div class="card-body">
+                            <h3 class="card-title">Kolkata</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg" required [(ngModel)]="city" placeholder="Enter City..." aria-describedby="searchBtn">
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" type="submit" id="searchBtn" (click)="getWeather()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                          </svg></button>
+                        </div>
+                      </div>
+                      <h2 class="text-danger" *ngIf="this.error > 0">City required</h2>
+                </div>
+            </div>
+            <div id="result" class="align-items-center text-center card p-3" *ngIf="this.show > 0">
+                {{this.result?.location.name}}, {{this.result?.location.country}}
+                <ul class="d-inline m-0 p-0">
+                    <li *ngFor="let image of this.result?.current.weather_icons" style="list-style: none;">
+                        <img src="{{image}}">
+                    </li>
+                </ul>
+                <ul class="d-inline m-0 p-0">
+                    <li *ngFor="let desc of this.result?.current.weather_descriptions" style="list-style: none;">
+                        {{desc}}
+                    </li>
+                </ul>
+                
+                    Temperature : {{this.result?.current.temperature}} &#8451;
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
